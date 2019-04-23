@@ -13,6 +13,8 @@ export default function copyFiles(done) {
   const instruction = getNormalizedInstruction();
   const files = Object.keys(instruction);
 
+  console.log(files);
+  
   return gulp.src(files)
     .pipe(changedInPlace({ firstPass: true }))
     .pipe(gulp.dest(x => {

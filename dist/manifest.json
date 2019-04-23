@@ -1,0 +1,385 @@
+{
+  "mver": "1.2.0",
+  "control": {
+    "identity": {
+      "name": "Siemens.OneOEE.Controls.BarChartHC",
+      "version": "1.0.0",
+      "displayname": "All in one control",
+      "type": "guid://4125FDB3-912D-406D-A2D9-E740B8B9F52C",
+      "icon": "./assets/controlIcon.ico",
+      "start": "./control/index.html",
+      "config": "./control/configurator.html"
+    },
+    "metadata": {
+      "x_company": "Siemens AG",
+      "keywords": [
+        "OneOEE",
+        "Bar"
+      ]
+    },
+    "environment": {
+      "extensions": {
+        "HMI": {
+          "mandatory": true,
+          "version": "~1.0.0"
+        },
+        "Dialogues": {
+          "mandatory": true,
+          "version": "~1.0.0"
+        }
+      },
+      "X_Dlc": [ "Siemens.Automation.Simatic.PMA.BL.OeeInstanceBrowsingExtensionKpi"]
+    },
+    "contracts": {
+      "api": {
+        "methods": {
+          "RefreshData": {
+            "description": "refresh chart",
+            "return": {
+              "type": "null"
+            }
+          },
+          "RemoveKpi": {
+            "description": "to remove kpi from selected kpi collection",
+            "parameters": {
+              "removeKpiId": {
+                "type": "string"
+              }
+            },
+            "return": {
+              "type": "null"
+            }
+          },
+          "GetKPICollection": {
+            "description": "to get selected kpis collection",
+            "return": {
+              "type": "array"
+            }
+          },
+          "AddKpi": {
+            "description": "to add kpi from selected kpi collection",
+            "parameters": {
+              "addKpiId": {
+                "type": "string"
+              }
+            },
+            "return": {
+              "type": "null"
+            }
+          }
+        },
+        "events": {
+
+        },
+        "properties": {
+          "Display": {
+            "type": "boolean",
+            "default": true
+          },
+          "Opacity": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "BarMode": {
+            "$ref": "#/control/types/PMABarMode"
+          },
+          "IndicatorMode": {
+            "$ref": "#/control/types/PMAIndicatorMode"
+          },
+          "BackColor": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/s/color",
+            "default": 4294967295
+          },
+          "ForeColor": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/s/color",
+            "default": 4278190080
+          },
+          "XYAxis": {
+            "$ref": "#/control/types/PMACustomControlValueAxisBase"
+          },
+          "GridAxis": {
+            "$ref": "#/control/types/PMACustomControlGridBase"
+          },
+          "Scale": {
+            "$ref": "#/control/types/PMACustomControlScaleBase"
+          },
+          "Font": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/c/font"
+          },
+          "IndicatorFormat": {
+            "$ref": "#/control/types/PMACustomControlIndicatorFormat"
+          },
+          "Online": {
+            "type": "boolean",
+            "default": false
+          },
+          "AutoRefreshRate": {
+            "type": "number",
+            "default": 10,
+            "minimum": 1
+          },
+          "SelectedKpis": {
+            "type": "array",
+            "items": { "$ref": "#/control/types/PMACustomControlIndicator" }
+          },
+          "SelectedTime": {
+            "type": "array",
+            "items": { "$ref": "#/control/types/PMACustomControlTimeRange" },
+            "minItems": 0,
+            "maxItems": 1
+          }
+        }
+      }
+    },
+    "types": {
+      "PMABarMode": {
+        "type": "string",
+        "enum": [ "Columns", "Bars" ],
+        "default": "Columns"
+      },
+      "PMAIndicatorMode": {
+        "type": "string",
+        "enum": [ "Indicator", "Indicator with label" ],
+        "default": "Indicator with label"
+      },
+      "PMACustomControlIndicator": {
+        "type": "object",
+        "properties": {
+          "kpi": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/s/sref",
+            "X_TypeConverter": "Siemens.Automation.Simatic.PMA.BL.DataBinding.OeeObjectBaseConverter, Siemens.Automation.Simatic.PMA",
+            "X_ApplicableType": [ "Siemens.Automation.Simatic.PMA.BL.VirtualObjects.Formula" ]
+          }
+        }
+      },
+      "DateTime": {
+        "$id": "http://tia.siemens.com/wincc-unified/types/s/datetime",
+        "type": "integer"
+      },
+      "SRef": {
+        "$id": "http://tia.siemens.com/wincc-unified/types/s/sref",
+        "type": "string"
+      },
+      "HmiFont":{
+        "$id": "http://tia.siemens.com/wincc-unified/types/s/ref/font",
+        "type": "string"
+      },
+      "HmiFontWeight": {
+        "$id": "http://tia.siemens.com/wincc-unified/types/e/fontweight",
+        "type": "string",
+        "enum": ["Normal","Bold"]
+      },
+      "String":{
+        "$id": "http://tia.siemens.com/wincc-unified/types/s/string",
+        "type": "string"
+      },
+      "Bool":{ 
+        "$id": "http://tia.siemens.com/wincc-unified/types/s/bool",
+        "type": "boolean"
+      },
+      "Real":{
+        "$id": "http://tia.siemens.com/wincc-unified/types/s/real",
+        "type": "number"
+      },
+      "HmiFontStrikeOut": {
+        "$id": "http://tia.siemens.com/wincc-unified/types/e/fontstrikeout",
+        "type": "string",
+        "enum": ["None","Single"]
+      },
+      "HmiFontPart": {
+        "$id": "http://tia.siemens.com/wincc-unified/types/c/font",
+        "type": "object",
+        "properties": {
+          "Description": { "$ref": "http://tia.siemens.com/wincc-unified/types/s/ref/font" },
+          "Weight": { "$ref": "http://tia.siemens.com/wincc-unified/types/e/fontweight" },
+          "Name": { "$ref": "http://tia.siemens.com/wincc-unified/types/s/string" },
+          "Italic": { "$ref": "http://tia.siemens.com/wincc-unified/types/s/bool" },
+          "Size": { "$ref": "http://tia.siemens.com/wincc-unified/types/s/real" },
+          "Underline": { "$ref": "http://tia.siemens.com/wincc-unified/types/s/bool" },
+          "StrikeOut": { "$ref": "http://tia.siemens.com/wincc-unified/types/e/fontstrikeout" }
+        }
+      },
+      "Color": {
+        "$id": "http://tia.siemens.com/wincc-unified/types/s/color",
+        "type": "number"
+      },
+      "PMACustomControlIndicatorFormat": {
+        "type": "object",
+        "properties": {
+          "AutoFormat": {
+            "type": "boolean",
+            "default": true
+          },
+          "DecimalPrecision": {
+            "type": "number",
+            "default": 2,
+            "minimum": 0,
+            "maximum": 10
+          }
+        }
+      },
+      "PMACustomControlValueAxisBase": {
+        "type": "object",
+        "properties": {
+          "Visible": {
+            "type": "boolean",
+            "default": true
+          },
+          "Align": {
+            "$ref": "#/control/types/PMACustomControlSimplePosition"
+          },
+          "AutoRange": {
+            "type": "boolean",
+            "default": true
+          },
+          "BeginValue": {
+            "type": "number",
+            "default": 0
+          },
+          "EndValue": {
+            "type": "number",
+            "default": 100
+          },
+          "ShowLabels": {
+            "type": "boolean",
+            "default": true
+          },
+          "Color": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/s/color",
+            "default": 4278190080
+          },
+          "Weight": {
+            "type": "number",
+            "default": 0.7,
+            "minimum": 0.1,
+            "maximum": 3.0
+          }
+        }
+      },
+      "PMACustomControlSimplePosition": {
+        "type": "string",
+        "enum": [ "Left / Bottom", "Right / Top" ],
+        "default": "Left / Bottom"
+      },
+      "PMACustomControlGridBase": {
+        "type": "object",
+        "properties": {
+          "CoarseColor": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/s/color",
+            "default": 4278190080
+          },
+          "FineColor": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/s/color",
+            "default": 4278190080
+          },
+          "Coarse": {
+            "type": "boolean",
+            "default": true
+          },
+          "Fine": {
+            "type": "boolean",
+            "default": true
+          },
+          "Visible": {
+            "type": "boolean",
+            "default": true
+          },
+          "CoarseWeight": {
+            "type": "number",
+            "default": 0.4,
+            "minimum": 0.1,
+            "maximum": 3.0
+          },
+          "FineWeight": {
+            "type": "number",
+            "default": 0.1,
+            "minimum": 0.1,
+            "maximum": 3.0
+          }
+        }
+      },
+      "PMACustomControlScaleBase": {
+        "type": "object",
+        "properties": {
+          "Visible": {
+            "type": "boolean",
+            "default": true
+          },
+          "Font": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/c/font"
+          },
+          "ForeColor": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/s/color",
+            "default": 4278190080
+          },
+          "XLabelsRotation": {
+            "type": "number",
+            "default": 0,
+            "enum": [-90, -45, 0, 45, 90]
+          },
+          "YLabelsRotation": {
+            "type": "number",
+            "default": 0,
+            "enum": [-90, -45, 0, 45, 90]
+          }
+        }
+      },
+      "PMACustomControlTimePoint": {
+        "type": "object",
+        "properties": {
+          "Mode": {
+            "$ref": "#/control/types/PMACustomControlTimeMode"
+          },
+          "Time": {
+            "$ref": "http://tia.siemens.com/wincc-unified/types/s/datetime",
+            "type": "number",
+            "default" : 125911584000000000
+          },
+          "Now": {
+            "type": "boolean",
+            "default": true
+          },
+          "Offset": {
+            "type": "number",
+            "default": -1
+          },
+          "Unit": {
+            "$ref": "#/control/types/PMACustomControlTimeUnits"
+          },
+          "Entity": {
+            "type": "string",
+            "default": ""
+          },
+          "EntityLabel": {
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "PMACustomControlTimeRange": {
+        "type": "object",
+        "properties": {
+          "From": {
+            "$ref": "#/control/types/PMACustomControlTimePoint"
+          },
+          "To": {
+            "$ref": "#/control/types/PMACustomControlTimePoint"
+          }
+        },
+        "required": [ "From", "To" ]
+      },
+      "PMACustomControlTimeMode": {
+        "type": "string",
+        "enum": [ "Start / End Time", "Relative Time", "Reference time", "Period by SHC" ],
+        "default": "Relative Time"
+      },
+      "PMACustomControlTimeUnits": {
+        "type": "string",
+        "enum": [ "Hours", "Minutes", "Seconds" ],
+        "default": "Hours"
+      }
+    }
+  }
+}
