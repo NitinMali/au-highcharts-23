@@ -1,0 +1,24 @@
+<template>
+  <div class="sidebar-body mx-4">
+    <div class="pc-tab">
+      <nav>
+        <ul>
+          <li>
+            <label id="tab1Label" click.delegate="sharedMethods.changeTab('tab1')">Pie First Tab</label>
+          </li>
+          <li>
+            <label id="tab2Label" click.delegate="sharedMethods.changeTab('tab2')">Pie Second Tab</label>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <div id="tab1">
+          <tab1></tab1>
+        </div>
+        <div id="tab2">
+          <tab2></tab2>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>

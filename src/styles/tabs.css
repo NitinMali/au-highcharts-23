@@ -1,0 +1,75 @@
+.pc-tab section > div {
+  display: none;
+}
+
+.pc-tab nav label {
+  cursor: pointer;
+}
+
+.tab-selected{
+  display: block;
+}
+
+
+.pc-tab {
+  width: 100%;
+  max-width: 95%;
+}
+.pc-tab ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pc-tab ul li label {
+  float: left;
+  padding: 15px 25px;
+  border: 1px solid #ddd;
+  border-bottom: 0;
+  background: #eeeeee;
+  color: #444;
+}
+.pc-tab ul li label:hover {
+  background: #dddddd;
+}
+.pc-tab ul li label:active {
+  background: #ffffff;
+}
+.pc-tab ul li:not(:last-child) label {
+  border-right-width: 0;
+}
+.pc-tab section {
+  font-family: "Droid Serif";
+  clear: both;
+}
+.pc-tab section div {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  background: #fff;
+  line-height: 1em;
+  letter-spacing: 0.3px;
+  color: #444;
+}
+.pc-tab section div h2 {
+  margin: 0;
+  font-family: "Raleway";
+  letter-spacing: 1px;
+  color: #34495e;
+}
+
+.tab-selected-label {
+  background: white !important;
+  color: #111 !important;
+  position: relative;
+}
+.tab-selected-label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #ffffff;
+  left: 0;
+  bottom: -1px;
+}
+

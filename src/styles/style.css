@@ -1,0 +1,52 @@
+/* All common styles for all controls are here */
+
+.control-header {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+
+.font-white {
+  color: #fff;
+}
+
+.bg-grey {
+  background-color: #cccccc !important;
+}
+
+.float-right {
+  float: right;
+}
+/*
+ * Sidebar
+ */
+
+.sidenav {
+  height: 475px;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  overflow-x: hidden;
+  padding-left: 10px;
+  background-color: #f3f3f3;
+  transition: 0.5s;
+}
+
+
+.sidebar-body {
+  position: relative;
+  top: 0;
+  height: 400px;
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+}
