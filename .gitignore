@@ -83,3 +83,20 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+.DS_STORE
+Thumbs.db
+
+.idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Compiled files
+#/src/environment.js
+#/src/environment.ts
+/dist
+/test/coverage-jest
+/test/coverage-karma
