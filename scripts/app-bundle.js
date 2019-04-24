@@ -6,27 +6,16 @@ define('app',["exports"], function (_exports) {
   _exports.__esModule = true;
   _exports.App = void 0;
 
-  class App {
-    constructor() {}
+  var App =
+  /*#__PURE__*/
+  function () {
+    function App() {}
 
-    configureRouter(config, router) {
+    var _proto = App.prototype;
+
+    _proto.configureRouter = function configureRouter(config, router) {
       config.title = 'PFI';
       config.map([{
-        route: ['bar'],
-        name: 'bar',
-        moduleId: 'views/layout',
-        title: 'Bar'
-      }, {
-        route: ['pie'],
-        name: 'pie',
-        moduleId: 'views/layout',
-        title: 'Pie'
-      }, {
-        route: ['trend'],
-        name: 'trend',
-        moduleId: 'views/layout',
-        title: 'Trend'
-      }, {
         route: 'control/:control',
         name: 'control',
         moduleId: 'views/layout',
@@ -36,9 +25,10 @@ define('app',["exports"], function (_exports) {
         redirect: 'control/pie'
       }]);
       this.router = router;
-    }
+    };
 
-  }
+    return App;
+  }();
 
   _exports.App = App;
 });;
@@ -276,28 +266,35 @@ define('components/shared-methods',["exports"], function (_exports) {
   _exports.SharedMethods = void 0;
 
   /* eslint-disable padded-blocks */
-  class SharedMethods {
-    changeTab(tab) {
-      //reset all label buttons
-      let allLabels = document.querySelectorAll('.pc-tab nav label');
+  var SharedMethods =
+  /*#__PURE__*/
+  function () {
+    function SharedMethods() {}
 
-      for (let i = 0; i < allLabels.length; i++) {
+    var _proto = SharedMethods.prototype;
+
+    _proto.changeTab = function changeTab(tab) {
+      //reset all label buttons
+      var allLabels = document.querySelectorAll('.pc-tab nav label');
+
+      for (var i = 0; i < allLabels.length; i++) {
         allLabels[i].classList.remove('tab-selected-label');
       } //reset all tab contents
 
 
-      let allTabContents = document.querySelectorAll('.pc-tab section > div');
+      var allTabContents = document.querySelectorAll('.pc-tab section > div');
 
-      for (let i = 0; i < allTabContents.length; i++) {
-        allTabContents[i].style.display = 'none';
+      for (var _i = 0; _i < allTabContents.length; _i++) {
+        allTabContents[_i].style.display = 'none';
       } //only select the label and content which is clicked
 
 
       document.querySelector('#' + tab).style.display = 'block';
       document.querySelector('#' + tab + 'Label').classList.add('tab-selected-label');
-    }
+    };
 
-  }
+    return SharedMethods;
+  }();
 
   _exports.SharedMethods = SharedMethods;
 });;
@@ -558,7 +555,9 @@ define('main',["exports", "./environment"], function (_exports, _environment) {
       aurelia.use.plugin('aurelia-testing');
     }
 
-    aurelia.start().then(() => aurelia.setRoot());
+    aurelia.start().then(function () {
+      return aurelia.setRoot();
+    });
   }
 });;
 define('views/layout',["exports", "aurelia-framework", "aurelia-router"], function (_exports, _aureliaFramework, _aureliaRouter) {
@@ -615,5 +614,5 @@ define('views/layout',["exports", "aurelia-framework", "aurelia-router"], functi
   }(), _temp)) || _class);
   _exports.Layout = Layout;
 });;
-define('views/layout.html!text',[],function(){return "<template><div class=\"container\"><div class=\"row\"><div class=\"pure-g control-header\"><div class=\"pure-u-sm-1-3\"><img src=\"/img/menu-icon.png\" class=\"font-white px-2 clickable\" click.delegate=\"toggleNav()\"> <span class=\"navbar-brand pure-u-sm-1-2\"></span><p>All-in-one control</p></div><div class=\"pure-u-sm-1-2\"><div class=\"float-right\"><a class=\"pure-button pure-button-active\" route-href=\"route.bind: 'control'; params.bind: { control: 'bar' }\">Bar</a> <a class=\"pure-button pure-button-active\" route-href=\"route.bind: 'control'; params.bind: { control: 'pie' }\">Pie</a> <a class=\"pure-button pure-button-active\" route-href=\"route.bind: 'control'; params.bind: { control: 'trend' }\">Trend</a></div></div></div><template if.bind=\"param.control === 'trend'\"><div class=\"sidenav bg-light\" ref=\"mySidenav\"><trend-configurator title=\"Trend configurator\"></trend-configurator></div><div class=\"col-12\" ref=\"main\"><trend type=\"line\" title=\"Trend Control\" subtitle=\"Trend control for operand value\" title-y=\"Value\" series.bind=\"seriesPopulation\" point-start.bind=\"2010\"></trend></div></template><template if.bind=\"param.control === 'pie'\"><div class=\"sidenav bg-light\" ref=\"mySidenav\"><pie-configurator title=\"Pie configurator\"></pie-configurator></div><div class=\"col-12\" ref=\"main\"><pie type=\"pie\" title=\"Trend Control\" subtitle=\"Trend control for operand value\" title-y=\"Value\" series.bind=\"seriesPopulation\" point-start.bind=\"2010\"></pie></div></template></div></div></template>";});
+define('views/layout.html!text',[],function(){return "<template><div class=\"container\"><div class=\"row\"><div class=\"pure-g control-header\"><div class=\"pure-u-sm-1-3\"><span class=\"menu-btn font-white px-2 clickable\" click.delegate=\"toggleNav()\">+</span> <span class=\"navbar-brand pure-u-sm-1-2\"><p>All-in-one control</p></span></div><div class=\"pure-u-sm-1-2\"><div class=\"float-right\"><a class=\"pure-button pure-button-active\" route-href=\"route.bind: 'control'; params.bind: { control: 'bar' }\">Bar</a> <a class=\"pure-button pure-button-active\" route-href=\"route.bind: 'control'; params.bind: { control: 'pie' }\">Pie</a> <a class=\"pure-button pure-button-active\" route-href=\"route.bind: 'control'; params.bind: { control: 'trend' }\">Trend</a></div></div></div><template if.bind=\"param.control === 'trend'\"><div class=\"sidenav bg-light\" ref=\"mySidenav\"><trend-configurator title=\"Trend configurator\"></trend-configurator></div><div class=\"col-12\" ref=\"main\"><trend type=\"line\" title=\"Trend Control\" subtitle=\"Trend control for operand value\" title-y=\"Value\" series.bind=\"seriesPopulation\" point-start.bind=\"2010\"></trend></div></template><template if.bind=\"param.control === 'pie'\"><div class=\"sidenav bg-light\" ref=\"mySidenav\"><pie-configurator title=\"Pie configurator\"></pie-configurator></div><div class=\"col-12\" ref=\"main\"><pie type=\"pie\" title=\"Trend Control\" subtitle=\"Trend control for operand value\" title-y=\"Value\" series.bind=\"seriesPopulation\" point-start.bind=\"2010\"></pie></div></template></div></div></template>";});
 //# sourceMappingURL=app-bundle.js.map

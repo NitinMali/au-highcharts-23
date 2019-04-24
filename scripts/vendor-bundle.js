@@ -27239,10 +27239,10 @@ define('text/text',{load: function(id){throw new Error("Dynamic load not allowed
 function _aureliaConfigureModuleLoader(){window.define=SystemJS.amdDefine; window.require=window.requirejs=SystemJS.amdRequire; SystemJS.config({
   "map": {
     "text": "text",
-    "control/js/app-bundle": "dist/control/js/app-bundle.js"
+    "app-bundle": "scripts/app-bundle.js"
   },
   "bundles": {
-    "control/js/app-bundle": [
+    "app-bundle": [
       "app",
       "app.html!text",
       "components/pie",

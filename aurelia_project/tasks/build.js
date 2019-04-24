@@ -19,10 +19,10 @@ let build = gulp.series(
     processCSS
   ),
   minCSS,
+  writeBundles,
   copyFiles,
   replaceLinks,
-  zipDist,
-  writeBundles
+  zipDist
 );
 
 let main;
