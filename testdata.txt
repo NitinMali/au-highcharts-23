@@ -6,3 +6,146 @@
 
 [{"TimeFrames":[{"Equipments":[{"Entities":[{"DataType":5,"Description":{},"DisplayName":{"1033":"DesignSpeed"},"From":"2019-02-08T06:42:17.505Z","FromNano":"131940817375058394","Id":"1.130.3.0.0.0","Name":"DesignSpeed_1","Quality":192,"To":"2019-02-14T08:33:21.006Z","ToNano":"131946068010060448","Type":2,"UoMDisplayName":"","Value":30,"ValueType":3},{"DataType":5,"Description":{},"DisplayName":{"1033":"DesignSpeed"},"From":"2019-02-14T08:33:21.006Z","FromNano":"131946068010060448","Id":"1.130.3.0.0.0","Name":"DesignSpeed_1","Quality":192,"To":"2019-05-06T10:30:00.000Z","ToNano":"132016122000000000","Type":2,"UoMDisplayName":"","Value":30,"ValueType":3}],"Id":"1.125.1.0.0.0","Name":"HMI_RT_1::Plant_object_type_2_1"}],"From":"1601-01-01T00:00:00.000Z","To":"1601-01-01T00:00:00.000Z"}]}]
 
+function verifyData() {
+        if (!(ChartData instanceof Array)) {
+            return;
+        }
+
+        if (ChartData.length <= 0) {
+            return;
+        }
+
+        var equipments,
+          entyties,
+          entitiesCollection = [];
+        if (!Siemens.OneOEE.Common.Utilities.elementExist(ChartData[0].TimeFrames)) {
+            return;
+        }
+
+        ChartData[0].TimeFrames.forEach(function (timeframe) {
+            if (!Siemens.OneOEE.Common.Utilities.elementExist(timeframe.Equipments)) {
+                return;
+            }
+            equipments = timeframe.Equipments;
+            /* Extract Equipments */
+            if (!(equipments instanceof Array)) {
+                return;
+            }
+
+            equipments.forEach(function (equipment) {
+                /* Extract Entity */
+                entyties = equipment.Entities;
+
+                if (!(entyties instanceof Array)) {
+                    return;
+                }
+                entyties.forEach(function (entity) {
+                    if (Siemens.OneOEE.Common.Utilities.elementExist(entity)) {
+                        entitiesCollection.push({
+                            Type: entity.Type,
+                            Value: entity.Value,
+                            Id: entity.Id,
+                            Name: entity.Name,
+                            Start: entity.From,
+                            startNano: entity.FromNano,
+                            End: entity.To,
+                            EndNano: entity.ToNano,
+                            Quality: entity.Quality,
+                            UuId: entity.InstanceId,
+                            isOpen: entity.IsOpen,
+                            ValueType: entity.ValueType,
+                            UoMDisplayName: entity.UoMDisplayName,
+                            DisplayName: entity.DisplayName,
+                            Description: entity.Description,
+                            equipName: equipment.Name
+                        });
+                    }
+                });
+            });
+        });
+        ChartData = entitiesCollection;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+ oneoee.utilities.js   
+    
+  Siemens.OneOEE.Common.Utilities = {
+  
+  elementExist: function (element) {
+    return (typeof element !== 'undefined') && (element !== null);
+  },
+  
+  isNumber: function (element) {
+    return (typeof element === 'number');
+  },
+  isArray: function (element) {
+    return this.elementExist(element) && element instanceof Array;
+  }
+  }  
+  
+  oneoee.data.js
+  emens.OneOEE.Common.Data = {
+  Types: {
+    Time: 'Time',
+    TimeRange: 'TimeRange',
+    TimeRangeList: 'TimeRangeList',
+    GroupBy: 'GroupBy',
+    Array: 'Array',
+    Number: 'Number',
+    Color: 'Colo',
+    Boolean: 'Boolean',
+    String: 'String',
+    Complex: 'Complex'
+  },
+  Server: {
+    ExchangeCodes: {
+      Refresh: 100,
+      GetEquipments: 101,
+      GetKpis: 102,
+      ChangeLanguage: 109,
+      ConnectionStatusChange: 110,
+      LoadSettings: 150,
+      AddValue: 202,
+      SplitState: 203,
+      SaveSettings: 250,
+      ChangeValue: 302,
+      ChangeTimeCategory: 303
+    },
+    Errors: {
+      ConfInconsistent: 2147483664,
+      ProperConnection: 0,
+      NoConnection: 2147483670
+    }
+  },
+  getJSON: function (file, callback, fallback) {
+            var xhr = new XMLHttpRequest(),
+              async = false;
+
+            xhr.open('get', file, async)
+      xhr.onload = function () {
+          if (xhr.status === 200) {
+              if(xhr.responseType === 'json') {
+                  callback(xhr.response);
+              } else if (xhr.responseText) {
+                  // IE does not support responseType
+                  callback(JSON.parse(xhr.responseText));
+                  } else {
+                  callback('unsupported responseType');
+              }
+              } else {
+              fallback();
+              }
+              };
+      xhr.send();
+
+
+}
+  }
+    
+    
