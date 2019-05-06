@@ -1,0 +1,8 @@
+[{"TimeSpanList":[{"Id":"0","Name":"Hours"},{"Id":"1","Name":"Minutes"},{"Id":"2","Name":"Seconds"}]}]
+
+[{"EqList":[{"Description":"","DisplayName":"HMI_RT_1::Plant_object_type_1_1(1)","Hierarchy":"\\HMI_RT_1.hierarchy::Plant view/Plant_node_1_1/Plant_object_type_1_1","Id":"1.109.1.0.0.0","Name":"HMI_RT_1::Plant_object_type_1_1(1)","NodeTypeId":"1.100.1.0.0.0"},{"Description":"","DisplayName":"HMI_RT_1::Plant_object_type_2_1","Hierarchy":"\\HMI_RT_1.hierarchy::Plant view/Plant_node_1_2/Plant_object_type_2_1","Id":"1.125.1.0.0.0","Name":"HMI_RT_1::Plant_object_type_2_1","NodeTypeId":"1.126.1.0.0.0"}]}]
+
+[{"EntityList":[{"Description":{},"DisplayName":{"1033":"DesignSpeed"},"Id":"1.112.3.0.0.0","Name":"DesignSpeed_1","UoMDisplayName":""}]}]
+
+[{"TimeFrames":[{"Equipments":[{"Entities":[{"DataType":5,"Description":{},"DisplayName":{"1033":"DesignSpeed"},"From":"2019-02-08T06:42:17.505Z","FromNano":"131940817375058394","Id":"1.130.3.0.0.0","Name":"DesignSpeed_1","Quality":192,"To":"2019-02-14T08:33:21.006Z","ToNano":"131946068010060448","Type":2,"UoMDisplayName":"","Value":30,"ValueType":3},{"DataType":5,"Description":{},"DisplayName":{"1033":"DesignSpeed"},"From":"2019-02-14T08:33:21.006Z","FromNano":"131946068010060448","Id":"1.130.3.0.0.0","Name":"DesignSpeed_1","Quality":192,"To":"2019-05-06T10:30:00.000Z","ToNano":"132016122000000000","Type":2,"UoMDisplayName":"","Value":30,"ValueType":3}],"Id":"1.125.1.0.0.0","Name":"HMI_RT_1::Plant_object_type_2_1"}],"From":"1601-01-01T00:00:00.000Z","To":"1601-01-01T00:00:00.000Z"}]}]
+
